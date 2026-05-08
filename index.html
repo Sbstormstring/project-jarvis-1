@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>To-Do List Application with Voice Control</title>
+    <title>JARVIS - Advanced Voice Assistant</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div class="container">
         <header>
-            <h1>🎤 JARVIS To-Do List</h1>
-            <p class="subtitle">Voice-controlled task manager</p>
+            <h1>🎤 JARVIS - Voice Assistant</h1>
+            <p class="subtitle">Your personal AI assistant for tasks, web, and smart home</p>
         </header>
 
         <div class="voice-section">
@@ -19,58 +19,225 @@
                 <span class="voice-text">Click to Speak</span>
             </button>
             <div class="voice-status" id="voiceStatus"></div>
-            <p class="voice-help">Try: "Add buy groceries" or "List all tasks"</p>
+            <p class="voice-help">Try: "Add buy groceries" or "Open Google" or "What's the weather?"</p>
         </div>
 
-        <div class="input-section">
-            <div class="input-wrapper">
-                <input 
-                    type="text" 
-                    id="todoInput" 
-                    placeholder="Add a new task..." 
-                    autocomplete="off"
-                >
-                <button id="addBtn" class="add-btn">Add Task</button>
+        <!-- Tabs -->
+        <div class="tabs">
+            <button class="tab-btn active" data-tab="tasks">📋 Tasks</button>
+            <button class="tab-btn" data-tab="websites">🌐 Websites</button>
+            <button class="tab-btn" data-tab="smart-home">🏠 Smart Home</button>
+            <button class="tab-btn" data-tab="info">ℹ️ Info</button>
+        </div>
+
+        <!-- Tasks Tab -->
+        <div class="tab-content active" id="tasks-tab">
+            <div class="input-section">
+                <div class="input-wrapper">
+                    <input 
+                        type="text" 
+                        id="todoInput" 
+                        placeholder="Add a new task..." 
+                        autocomplete="off"
+                    >
+                    <button id="addBtn" class="add-btn">Add Task</button>
+                </div>
+                <div class="filter-buttons">
+                    <button class="filter-btn active" data-filter="all">All</button>
+                    <button class="filter-btn" data-filter="active">Active</button>
+                    <button class="filter-btn" data-filter="completed">Completed</button>
+                </div>
             </div>
-            <div class="filter-buttons">
-                <button class="filter-btn active" data-filter="all">All</button>
-                <button class="filter-btn" data-filter="active">Active</button>
-                <button class="filter-btn" data-filter="completed">Completed</button>
+
+            <div class="stats">
+                <span>Total: <strong id="totalCount">0</strong></span>
+                <span>Active: <strong id="activeCount">0</strong></span>
+                <span>Completed: <strong id="completedCount">0</strong></span>
             </div>
-        </div>
 
-        <div class="stats">
-            <span>Total: <strong id="totalCount">0</strong></span>
-            <span>Active: <strong id="activeCount">0</strong></span>
-            <span>Completed: <strong id="completedCount">0</strong></span>
-        </div>
-
-        <ul id="todoList" class="todo-list">
-            <!-- Tasks will be added here dynamically -->
-        </ul>
-
-        <div class="empty-state" id="emptyState">
-            <p>No tasks yet. Add one to get started! 🚀</p>
-        </div>
-
-        <div class="actions">
-            <button id="clearCompletedBtn" class="clear-btn">Clear Completed</button>
-            <button id="clearAllBtn" class="clear-all-btn">Clear All</button>
-        </div>
-
-        <div class="command-list">
-            <h3>📝 Voice Commands</h3>
-            <ul>
-                <li>"Add [task name]" - Add a new task</li>
-                <li>"List tasks" / "Show all" - List all tasks</li>
-                <li>"List active" - Show active tasks only</li>
-                <li>"List completed" - Show completed tasks only</li>
-                <li>"Complete [task number]" - Mark task as done</li>
-                <li>"Delete [task number]" - Remove a task</li>
-                <li>"How many tasks?" - Get task count</li>
-                <li>"Clear completed" - Remove done tasks</li>
-                <li>"Help" - Show available commands</li>
+            <ul id="todoList" class="todo-list">
+                <!-- Tasks will be added here dynamically -->
             </ul>
+
+            <div class="empty-state" id="emptyState">
+                <p>No tasks yet. Add one to get started! 🚀</p>
+            </div>
+
+            <div class="actions">
+                <button id="clearCompletedBtn" class="clear-btn">Clear Completed</button>
+                <button id="clearAllBtn" class="clear-all-btn">Clear All</button>
+            </div>
+        </div>
+
+        <!-- Websites Tab -->
+        <div class="tab-content" id="websites-tab">
+            <h3>Popular Websites</h3>
+            <div class="websites-grid">
+                <div class="website-card" onclick="openWebsite('https://www.google.com', 'Google')">
+                    <span class="website-emoji">🔍</span>
+                    <span>Google</span>
+                </div>
+                <div class="website-card" onclick="openWebsite('https://www.github.com', 'GitHub')">
+                    <span class="website-emoji">🐙</span>
+                    <span>GitHub</span>
+                </div>
+                <div class="website-card" onclick="openWebsite('https://www.youtube.com', 'YouTube')">
+                    <span class="website-emoji">📺</span>
+                    <span>YouTube</span>
+                </div>
+                <div class="website-card" onclick="openWebsite('https://www.spotify.com', 'Spotify')">
+                    <span class="website-emoji">🎵</span>
+                    <span>Spotify</span>
+                </div>
+                <div class="website-card" onclick="openWebsite('https://www.netflix.com', 'Netflix')">
+                    <span class="website-emoji">🎬</span>
+                    <span>Netflix</span>
+                </div>
+                <div class="website-card" onclick="openWebsite('https://www.twitter.com', 'Twitter')">
+                    <span class="website-emoji">𝕏</span>
+                    <span>Twitter</span>
+                </div>
+                <div class="website-card" onclick="openWebsite('https://www.facebook.com', 'Facebook')">
+                    <span class="website-emoji">📘</span>
+                    <span>Facebook</span>
+                </div>
+                <div class="website-card" onclick="openWebsite('https://www.reddit.com', 'Reddit')">
+                    <span class="website-emoji">🔴</span>
+                    <span>Reddit</span>
+                </div>
+                <div class="website-card" onclick="openWebsite('https://www.amazon.com', 'Amazon')">
+                    <span class="website-emoji">📦</span>
+                    <span>Amazon</span>
+                </div>
+            </div>
+            <div class="custom-url">
+                <input type="text" id="customUrl" placeholder="Enter custom URL or website name...">
+                <button onclick="openCustomWebsite()" class="add-btn">Go to Website</button>
+            </div>
+            <p class="help-text">💡 Voice: "Open YouTube" or "Go to Reddit"</p>
+        </div>
+
+        <!-- Smart Home Tab -->
+        <div class="tab-content" id="smart-home-tab">
+            <h3>🏠 Smart Home Controls</h3>
+            <div class="smart-home-section">
+                <div class="device-group">
+                    <h4>💡 Lights</h4>
+                    <div class="device-buttons">
+                        <button class="device-btn" onclick="controlDevice('lights', 'on')">Turn On</button>
+                        <button class="device-btn" onclick="controlDevice('lights', 'off')">Turn Off</button>
+                        <button class="device-btn" onclick="controlDevice('lights', 'dim')">Dim</button>
+                        <button class="device-btn" onclick="controlDevice('lights', 'bright')">Brighten</button>
+                    </div>
+                </div>
+                <div class="device-group">
+                    <h4>🎵 Music</h4>
+                    <div class="device-buttons">
+                        <button class="device-btn" onclick="controlDevice('music', 'play')">Play</button>
+                        <button class="device-btn" onclick="controlDevice('music', 'pause')">Pause</button>
+                        <button class="device-btn" onclick="controlDevice('music', 'next')">Next</button>
+                        <button class="device-btn" onclick="controlDevice('music', 'previous')">Previous</button>
+                    </div>
+                </div>
+                <div class="device-group">
+                    <h4>🌡️ Temperature</h4>
+                    <div class="temp-control">
+                        <button class="device-btn" onclick="controlDevice('temp', 'decrease')">❄️ -</button>
+                        <span id="tempDisplay">72°F</span>
+                        <button class="device-btn" onclick="controlDevice('temp', 'increase')">🔥 +</button>
+                    </div>
+                </div>
+                <div class="device-group">
+                    <h4>📺 TV</h4>
+                    <div class="device-buttons">
+                        <button class="device-btn" onclick="controlDevice('tv', 'on')">Turn On</button>
+                        <button class="device-btn" onclick="controlDevice('tv', 'off')">Turn Off</button>
+                    </div>
+                </div>
+            </div>
+            <div class="smart-home-note">
+                <p>⚠️ <strong>Note:</strong> These are simulated controls. To connect real smart devices:</p>
+                <ul>
+                    <li>Set up Google Home API integration</li>
+                    <li>Configure Alexa Skills</li>
+                    <li>Connect Philips Hue, LIFX, or other IoT devices</li>
+                </ul>
+            </div>
+            <p class="help-text">💡 Voice: "Turn on the lights" or "Set temperature to 75" or "Play music"</p>
+        </div>
+
+        <!-- Info Tab -->
+        <div class="tab-content" id="info-tab">
+            <h3>ℹ️ Information & Search</h3>
+            <div class="info-section">
+                <div class="search-box">
+                    <input type="text" id="searchInput" placeholder="Search the web, weather, definitions...">
+                    <button onclick="performSearch()" class="add-btn">Search</button>
+                </div>
+            </div>
+            <div class="info-cards">
+                <div class="info-card" onclick="getInfo('weather')">
+                    <span class="info-emoji">🌤️</span>
+                    <span>Weather</span>
+                </div>
+                <div class="info-card" onclick="getInfo('time')">
+                    <span class="info-emoji">⏰</span>
+                    <span>Current Time</span>
+                </div>
+                <div class="info-card" onclick="getInfo('date')">
+                    <span class="info-emoji">📅</span>
+                    <span>Today's Date</span>
+                </div>
+                <div class="info-card" onclick="getInfo('news')">
+                    <span class="info-emoji">📰</span>
+                    <span>News</span>
+                </div>
+            </div>
+            <div class="info-display" id="infoDisplay"></div>
+            <p class="help-text">💡 Voice: "What's the weather?" or "What time is it?" or "Search for cats"</p>
+        </div>
+
+        <!-- Command Help -->
+        <div class="command-list">
+            <h3>📚 Available Voice Commands</h3>
+            <div class="command-categories">
+                <div class="command-category">
+                    <h4>📋 Task Commands</h4>
+                    <ul>
+                        <li>"Add [task name]" - Add a new task</li>
+                        <li>"List tasks" - Show all tasks</li>
+                        <li>"Complete [number]" - Mark task done</li>
+                        <li>"Delete [number]" - Remove a task</li>
+                    </ul>
+                </div>
+                <div class="command-category">
+                    <h4>🌐 Website Commands</h4>
+                    <ul>
+                        <li>"Open [website name]" - Go to website</li>
+                        <li>"Open Google" - Search engine</li>
+                        <li>"Go to YouTube" - Video platform</li>
+                        <li>"Visit GitHub" - Code repository</li>
+                    </ul>
+                </div>
+                <div class="command-category">
+                    <h4>🏠 Smart Home Commands</h4>
+                    <ul>
+                        <li>"Turn on the lights" - Light control</li>
+                        <li>"Play music" - Start music</li>
+                        <li>"Set temperature to 72" - Thermostat</li>
+                        <li>"Turn on TV" - TV control</li>
+                    </ul>
+                </div>
+                <div class="command-category">
+                    <h4>ℹ️ Info Commands</h4>
+                    <ul>
+                        <li>"What's the weather?" - Get weather</li>
+                        <li>"What time is it?" - Current time</li>
+                        <li>"Search [topic]" - Web search</li>
+                        <li>"Tell me about [topic]" - Information</li>
+                    </ul>
+                </div>
+            </div>
         </div>
     </div>
 
