@@ -19,13 +19,15 @@ body {
     border-radius: 12px;
     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
     width: 100%;
-    max-width: 600px;
+    max-width: 700px;
     padding: 30px;
+    max-height: 90vh;
+    overflow-y: auto;
 }
 
 header {
     text-align: center;
-    margin-bottom: 30px;
+    margin-bottom: 25px;
 }
 
 header h1 {
@@ -37,6 +39,69 @@ header h1 {
 .subtitle {
     color: #666;
     font-size: 0.9em;
+}
+
+.voice-section {
+    margin-bottom: 25px;
+    padding: 20px;
+    background: linear-gradient(135deg, #667eea15 0%, #764ba215 100%);
+    border-radius: 10px;
+    text-align: center;
+}
+
+.voice-btn {
+    padding: 15px 30px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    border-radius: 50px;
+    font-size: 1.1em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.3s;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    justify-content: center;
+}
+
+.voice-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 30px rgba(102, 126, 234, 0.4);
+}
+
+.voice-btn.listening {
+    background: linear-gradient(135deg, #ff6b6b 0%, #ff5252 100%);
+    animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        box-shadow: 0 0 0 0 rgba(255, 107, 107, 0.7);
+    }
+    50% {
+        box-shadow: 0 0 0 10px rgba(255, 107, 107, 0);
+    }
+}
+
+.voice-icon {
+    font-size: 1.3em;
+}
+
+.voice-status {
+    margin-top: 15px;
+    height: 30px;
+    font-size: 0.9em;
+    color: #667eea;
+    font-weight: 600;
+}
+
+.voice-help {
+    font-size: 0.8em;
+    color: #999;
+    margin-top: 10px;
+    font-style: italic;
 }
 
 .input-section {
@@ -132,6 +197,8 @@ header h1 {
 .todo-list {
     list-style: none;
     margin-bottom: 20px;
+    max-height: 300px;
+    overflow-y: auto;
 }
 
 .todo-item {
@@ -143,6 +210,19 @@ header h1 {
     margin-bottom: 10px;
     transition: all 0.3s;
     animation: slideIn 0.3s ease-out;
+    position: relative;
+}
+
+.todo-item::before {
+    content: attr(data-index);
+    position: absolute;
+    left: 5px;
+    top: 5px;
+    font-size: 0.7em;
+    background: #667eea;
+    color: white;
+    padding: 2px 6px;
+    border-radius: 3px;
 }
 
 @keyframes slideIn {
@@ -190,6 +270,7 @@ header h1 {
     display: flex;
     align-items: center;
     justify-content: center;
+    margin-left: 25px;
 }
 
 .todo-checkbox:hover {
@@ -239,6 +320,7 @@ header h1 {
     display: flex;
     gap: 10px;
     justify-content: center;
+    margin-bottom: 25px;
 }
 
 .clear-btn,
@@ -262,6 +344,39 @@ header h1 {
     color: #ff6b6b;
 }
 
+.command-list {
+    background: #f9f9f9;
+    border-radius: 8px;
+    padding: 15px;
+    margin-top: 20px;
+}
+
+.command-list h3 {
+    color: #333;
+    margin-bottom: 10px;
+    font-size: 0.9em;
+}
+
+.command-list ul {
+    list-style: none;
+    font-size: 0.8em;
+    color: #666;
+}
+
+.command-list li {
+    padding: 5px 0;
+    padding-left: 15px;
+    position: relative;
+}
+
+.command-list li::before {
+    content: '•';
+    position: absolute;
+    left: 0;
+    color: #667eea;
+    font-weight: bold;
+}
+
 /* Responsive Design */
 @media (max-width: 600px) {
     .container {
@@ -277,6 +392,10 @@ header h1 {
     }
 
     .add-btn {
+        width: 100%;
+    }
+
+    .voice-btn {
         width: 100%;
     }
 
@@ -296,5 +415,9 @@ header h1 {
     .clear-btn,
     .clear-all-btn {
         width: 100%;
+    }
+
+    .command-list {
+        font-size: 0.75em;
     }
 }

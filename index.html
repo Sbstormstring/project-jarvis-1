@@ -3,15 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>To-Do List Application</title>
+    <title>To-Do List Application with Voice Control</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div class="container">
         <header>
-            <h1>My To-Do List</h1>
-            <p class="subtitle">Stay organized and productive</p>
+            <h1>🎤 JARVIS To-Do List</h1>
+            <p class="subtitle">Voice-controlled task manager</p>
         </header>
+
+        <div class="voice-section">
+            <button id="voiceBtn" class="voice-btn">
+                <span class="voice-icon">🎤</span>
+                <span class="voice-text">Click to Speak</span>
+            </button>
+            <div class="voice-status" id="voiceStatus"></div>
+            <p class="voice-help">Try: "Add buy groceries" or "List all tasks"</p>
+        </div>
 
         <div class="input-section">
             <div class="input-wrapper">
@@ -47,6 +56,21 @@
         <div class="actions">
             <button id="clearCompletedBtn" class="clear-btn">Clear Completed</button>
             <button id="clearAllBtn" class="clear-all-btn">Clear All</button>
+        </div>
+
+        <div class="command-list">
+            <h3>📝 Voice Commands</h3>
+            <ul>
+                <li>"Add [task name]" - Add a new task</li>
+                <li>"List tasks" / "Show all" - List all tasks</li>
+                <li>"List active" - Show active tasks only</li>
+                <li>"List completed" - Show completed tasks only</li>
+                <li>"Complete [task number]" - Mark task as done</li>
+                <li>"Delete [task number]" - Remove a task</li>
+                <li>"How many tasks?" - Get task count</li>
+                <li>"Clear completed" - Remove done tasks</li>
+                <li>"Help" - Show available commands</li>
+            </ul>
         </div>
     </div>
 
